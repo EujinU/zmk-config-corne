@@ -1,17 +1,15 @@
 name: ZMK Build
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:  # Для ручного запуска
 
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    strategy:
-      matrix:
-        include:
-          - board: nice_nano_v2
-            shield: corne_left
-          - board: nice_nano_v2  
-            shield: corne_right
     with:
-      keymap-dir: config/
+      config-dir: config/  # ← ЗАМЕНИЛИ keymap-dir на config-dir
     secrets: inherit
