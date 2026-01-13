@@ -5,11 +5,9 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-  workflow_dispatch:  # Для ручного запуска
+  workflow_dispatch:
 
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    with:
-      config-dir: config/  # ← ЗАМЕНИЛИ keymap-dir на config-dir
-    secrets: inherit
+    # БЕЗ параметров 'with:' - workflow сам найдет конфиг
